@@ -1,0 +1,42 @@
+  <header class="header header_pets">
+    <div class="header__mask" [class.lock]="menuOpen" (click)="closeMenu()">
+      <div class="header__container">
+        <a routerLink="/" class="header__logo logo logo_pets" (click)="closeMenu()">
+          <div class="logo__title">Pawfect Companion</div>
+          <div class="logo__subtitle">Dog Care and Breed Information Website</div>
+        </a>
+
+        <div
+          class="header__burger header__burger_black"
+          [class.active]="menuOpen"
+          (click)="toggleMenu(); $event.stopPropagation()"
+        >
+          <span></span>
+        </div>
+
+        <nav
+          class="header__nav"
+          [class.active]="menuOpen"
+          (click)="$event.stopPropagation()"
+        >
+          <a routerLink="/" class="header__link" (click)="closeMenu()">Home</a>
+
+          <a routerLink="/pets" class="header__link link-active" (click)="closeMenu()">
+            Dog Breeds
+          </a>
+
+          <a routerLink="/care-tips" class="header__link" (click)="closeMenu()">
+            Care Tips
+          </a>
+
+          <a routerLink="/dog-names" class="header__link" (click)="closeMenu()">
+            Dog Names
+          </a>
+
+          <a routerLink="/about" class="header__link" (click)="closeMenu()">
+            About Us
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>

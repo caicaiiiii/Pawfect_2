@@ -1,0 +1,347 @@
+<app-header-pets></app-header-pets>
+
+<main class="breed-page">
+  <div class="breed-page__container">
+
+    <!-- LOADING -->
+    <section class="breed-hero breed-hero--state" *ngIf="loading">
+      <div class="breed-state">
+        <div class="loader"></div>
+        <span class="breed-state__badge">Dog Profile</span>
+        <h1 class="breed-state__title title">Loading breed information...</h1>
+        <p class="breed-state__text">
+          Please wait while we load the breed profile and behavior indicators.
+        </p>
+      </div>
+    </section>
+
+    <!-- ERROR -->
+    <section class="breed-hero breed-hero--state" *ngIf="!loading && error">
+      <div class="breed-state">
+        <span class="breed-state__badge breed-state__badge--error">Unable to Load</span>
+        <h1 class="breed-state__title title">Something went wrong</h1>
+        <p class="breed-state__text">{{ error }}</p>
+        <a routerLink="/pets" class="button">Back to Dog Breeds</a>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <ng-container *ngIf="!loading && breed as dog">
+
+      <!-- HERO -->
+      <section class="breed-hero">
+        <div class="breed-hero__media">
+          <img
+            class="breed-hero__image"
+            [src]="dog.image_link || 'assets/images/pets-holder.png'"
+            [alt]="dog.name"
+          />
+        </div>
+
+        <div class="breed-hero__content">
+          <span class="breed-hero__badge">Dog Profile</span>
+
+          <h1 class="breed-hero__title title">
+            {{ dog.name }}
+          </h1>
+
+          <p class="breed-hero__subtitle">
+            {{ getHeroSubtitle() }}
+          </p>
+
+          <p class="breed-hero__text">
+            {{ dog.name }} has its own balance of energy, trainability, social behavior,
+            grooming needs, and daily care requirements. Explore the breed profile below
+            to better understand its personality and lifestyle fit.
+          </p>
+
+          <div class="breed-hero__chips">
+            <span class="breed-chip">
+              Life Span: {{ dog.min_life_expectancy }}–{{ dog.max_life_expectancy }} yrs
+            </span>
+            <span class="breed-chip">
+              Barking: {{ dog.barking }}/5
+            </span>
+            <span class="breed-chip">
+              Energy: {{ dog.energy }}/5
+            </span>
+          </div>
+
+          <a routerLink="/pets" class="button">Back to Dog Breeds</a>
+        </div>
+      </section>
+
+      <!-- BREED INFORMATION -->
+      <section class="breed-section">
+        <div class="section-heading">
+          <h2 class="breed-section__title title">Breed Information</h2>
+          <p class="breed-section__subtitle">
+            Essential information about size, life span, and compatibility.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <span class="info-card__icon">❤️</span>
+            <h3>Life Expectancy</h3>
+            <p>{{ dog.min_life_expectancy }} – {{ dog.max_life_expectancy }} years</p>
+          </article>
+
+          <article class="info-card">
+            <span class="info-card__icon">♂️</span>
+            <h3>Male Weight</h3>
+            <p>{{ dog.min_weight_male }} – {{ dog.max_weight_male }} lbs</p>
+          </article>
+
+          <article class="info-card">
+            <span class="info-card__icon">♀️</span>
+            <h3>Female Weight</h3>
+            <p>{{ dog.min_weight_female }} – {{ dog.max_weight_female }} lbs</p>
+          </article>
+
+          <article class="info-card">
+            <span class="info-card__icon">📏</span>
+            <h3>Male Height</h3>
+            <p>{{ dog.min_height_male }} – {{ dog.max_height_male }} in</p>
+          </article>
+
+          <article class="info-card">
+            <span class="info-card__icon">📐</span>
+            <h3>Female Height</h3>
+            <p>{{ dog.min_height_female }} – {{ dog.max_height_female }} in</p>
+          </article>
+
+          <article class="info-card">
+            <span class="info-card__icon">👶</span>
+            <h3>Good With Children</h3>
+            <p>{{ dog.good_with_children }}/5</p>
+          </article>
+
+          <article class="info-card">
+            <span class="info-card__icon">🐕</span>
+            <h3>Good With Other Dogs</h3>
+            <p>{{ dog.good_with_other_dogs }}/5</p>
+          </article>
+
+          <article class="info-card">
+            <span class="info-card__icon">🙋</span>
+            <h3>Good With Strangers</h3>
+            <p>{{ dog.good_with_strangers }}/5</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- INDICATORS -->
+      <section class="breed-section">
+        <div class="section-heading">
+          <h2 class="breed-section__title title">Behavior & Care Indicators</h2>
+          <p class="breed-section__subtitle">
+            Each indicator is scored from 1 to 5 and displayed as a visual level bar.
+          </p>
+        </div>
+
+        <div class="trait-panel">
+
+          <div class="trait-row">
+            <div class="trait-row__head">
+              <h3>Barking Level</h3>
+              <span class="trait-score">{{ dog.barking }}/5 · {{ getScoreLabel(dog.barking) }}</span>
+            </div>
+
+            <div class="trait-bar">
+              <div
+                class="trait-bar__fill"
+                [style.width.%]="getScorePercent(dog.barking)"
+                [ngClass]="{
+                  'trait-bar__fill--low': dog.barking <= 2,
+                  'trait-bar__fill--medium': dog.barking === 3,
+                  'trait-bar__fill--high': dog.barking >= 4
+                }">
+              </div>
+            </div>
+
+            <p class="trait-row__hint">How vocal this breed tends to be.</p>
+          </div>
+
+          <div class="trait-row">
+            <div class="trait-row__head">
+              <h3>Energy Level</h3>
+              <span class="trait-score">{{ dog.energy }}/5 · {{ getScoreLabel(dog.energy) }}</span>
+            </div>
+
+            <div class="trait-bar">
+              <div
+                class="trait-bar__fill"
+                [style.width.%]="getScorePercent(dog.energy)"
+                [ngClass]="{
+                  'trait-bar__fill--low': dog.energy <= 2,
+                  'trait-bar__fill--medium': dog.energy === 3,
+                  'trait-bar__fill--high': dog.energy >= 4
+                }">
+              </div>
+            </div>
+
+            <p class="trait-row__hint">Higher values usually mean more exercise is needed.</p>
+          </div>
+
+          <div class="trait-row">
+            <div class="trait-row__head">
+              <h3>Trainability</h3>
+              <span class="trait-score">{{ dog.trainability }}/5 · {{ getScoreLabel(dog.trainability) }}</span>
+            </div>
+
+            <div class="trait-bar">
+              <div
+                class="trait-bar__fill"
+                [style.width.%]="getScorePercent(dog.trainability)"
+                [ngClass]="{
+                  'trait-bar__fill--low': dog.trainability <= 2,
+                  'trait-bar__fill--medium': dog.trainability === 3,
+                  'trait-bar__fill--high': dog.trainability >= 4
+                }">
+              </div>
+            </div>
+
+            <p class="trait-row__hint">How easily the breed tends to respond to training.</p>
+          </div>
+
+          <div class="trait-row">
+            <div class="trait-row__head">
+              <h3>Protectiveness</h3>
+              <span class="trait-score">{{ dog.protectiveness }}/5 · {{ getScoreLabel(dog.protectiveness) }}</span>
+            </div>
+
+            <div class="trait-bar">
+              <div
+                class="trait-bar__fill"
+                [style.width.%]="getScorePercent(dog.protectiveness)"
+                [ngClass]="{
+                  'trait-bar__fill--low': dog.protectiveness <= 2,
+                  'trait-bar__fill--medium': dog.protectiveness === 3,
+                  'trait-bar__fill--high': dog.protectiveness >= 4
+                }">
+              </div>
+            </div>
+
+            <p class="trait-row__hint">How alert and guarding-inclined the breed may be.</p>
+          </div>
+
+          <div class="trait-row">
+            <div class="trait-row__head">
+              <h3>Playfulness</h3>
+              <span class="trait-score">{{ dog.playfulness }}/5 · {{ getScoreLabel(dog.playfulness) }}</span>
+            </div>
+
+            <div class="trait-bar">
+              <div
+                class="trait-bar__fill"
+                [style.width.%]="getScorePercent(dog.playfulness)"
+                [ngClass]="{
+                  'trait-bar__fill--low': dog.playfulness <= 2,
+                  'trait-bar__fill--medium': dog.playfulness === 3,
+                  'trait-bar__fill--high': dog.playfulness >= 4
+                }">
+              </div>
+            </div>
+
+            <p class="trait-row__hint">Reflects how lively and playful the breed tends to be.</p>
+          </div>
+
+          <div class="trait-row">
+            <div class="trait-row__head">
+              <h3>Shedding</h3>
+              <span class="trait-score">{{ dog.shedding }}/5 · {{ getScoreLabel(dog.shedding) }}</span>
+            </div>
+
+            <div class="trait-bar">
+              <div
+                class="trait-bar__fill"
+                [style.width.%]="getScorePercent(dog.shedding)"
+                [ngClass]="{
+                  'trait-bar__fill--low': dog.shedding <= 2,
+                  'trait-bar__fill--medium': dog.shedding === 3,
+                  'trait-bar__fill--high': dog.shedding >= 4
+                }">
+              </div>
+            </div>
+
+            <p class="trait-row__hint">Helps estimate how much coat cleanup to expect.</p>
+          </div>
+
+          <div class="trait-row">
+            <div class="trait-row__head">
+              <h3>Grooming Needs</h3>
+              <span class="trait-score">{{ dog.grooming }}/5 · {{ getScoreLabel(dog.grooming) }}</span>
+            </div>
+
+            <div class="trait-bar">
+              <div
+                class="trait-bar__fill"
+                [style.width.%]="getScorePercent(dog.grooming)"
+                [ngClass]="{
+                  'trait-bar__fill--low': dog.grooming <= 2,
+                  'trait-bar__fill--medium': dog.grooming === 3,
+                  'trait-bar__fill--high': dog.grooming >= 4
+                }">
+              </div>
+            </div>
+
+            <p class="trait-row__hint">Higher values usually mean more coat maintenance.</p>
+          </div>
+
+          <div class="trait-row">
+            <div class="trait-row__head">
+              <h3>Drooling</h3>
+              <span class="trait-score">{{ dog.drooling }}/5 · {{ getScoreLabel(dog.drooling) }}</span>
+            </div>
+
+            <div class="trait-bar">
+              <div
+                class="trait-bar__fill"
+                [style.width.%]="getScorePercent(dog.drooling)"
+                [ngClass]="{
+                  'trait-bar__fill--low': dog.drooling <= 2,
+                  'trait-bar__fill--medium': dog.drooling === 3,
+                  'trait-bar__fill--high': dog.drooling >= 4
+                }">
+              </div>
+            </div>
+
+            <p class="trait-row__hint">Indicates how likely the breed is to drool noticeably.</p>
+          </div>
+
+          <div class="trait-row">
+            <div class="trait-row__head">
+              <h3>Coat Length</h3>
+              <span class="trait-score">{{ dog.coat_length }}/5 · {{ getScoreLabel(dog.coat_length) }}</span>
+            </div>
+
+            <div class="trait-bar">
+              <div
+                class="trait-bar__fill"
+                [style.width.%]="getScorePercent(dog.coat_length)"
+                [ngClass]="{
+                  'trait-bar__fill--low': dog.coat_length <= 2,
+                  'trait-bar__fill--medium': dog.coat_length === 3,
+                  'trait-bar__fill--high': dog.coat_length >= 4
+                }">
+              </div>
+            </div>
+
+            <p class="trait-row__hint">Shows how short or long the breed’s coat tends to be.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <app-dog-info-carousel
+        [title]="'Dog Care Tips'"
+        [subtitle]="'The Dog Care Tips section provides feeding recommendations, grooming guidelines, and exercise suggestions to support proper dog care.'">
+      </app-dog-info-carousel>
+
+    </ng-container>
+
+  </div>
+</main>
+
+<app-footer></app-footer>

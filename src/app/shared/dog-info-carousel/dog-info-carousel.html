@@ -1,0 +1,23 @@
+<section class="dog-info-carousel">
+  <div class="dog-info-carousel__header">
+    <h2 class="dog-info-carousel__title title">{{ title }}</h2>
+    <p class="dog-info-carousel__subtitle">{{ subtitle }}</p>
+  </div>
+
+  <div class="dog-info-carousel__controls">
+    <button class="dog-info-carousel__arrow" type="button" (click)="prev()">
+      ←
+    </button>
+    <button class="dog-info-carousel__arrow" type="button" (click)="next()">
+      →
+    </button>
+  </div>
+
+  <div class="dog-info-carousel__track">
+    <article class="dog-info-card" *ngFor="let card of visibleCards">
+      <div class="dog-info-card__icon">{{ card.icon }}</div>
+      <h3 class="dog-info-card__title">{{ card.title }}</h3>
+      <p class="dog-info-card__text">{{ card.description }}</p>
+    </article>
+  </div>
+</section>

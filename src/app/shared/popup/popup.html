@@ -1,0 +1,32 @@
+<div class="popup" [class.visible]="visible" (click)="closePopup()">
+  <div class="popup__body" *ngIf="pet">
+    <div class="popup__content" (click)="stopPropagation($event)">
+      <button class="popup__close" type="button" (click)="closePopup()">
+        ✕
+      </button>
+
+      <div class="popup__image">
+        <img [src]="getPopupImage()" [alt]="pet.name" />
+      </div>
+
+      <div class="popup__text-block">
+        <h3 class="popup__title title">{{ pet.name }}</h3>
+        <div class="popup__subtitle">{{ pet.type }} - {{ pet.breed }}</div>
+        <p class="popup__text">{{ pet.description }}</p>
+
+        <ul class="popup__list">
+          <li class="popup__li"><strong>Age:</strong> {{ pet.age }}</li>
+          <li class="popup__li">
+            <strong>Inoculations:</strong> {{ formatList(pet.inoculations) }}
+          </li>
+          <li class="popup__li">
+            <strong>Diseases:</strong> {{ formatList(pet.diseases) }}
+          </li>
+          <li class="popup__li">
+            <strong>Parasites:</strong> {{ formatList(pet.parasites) }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
