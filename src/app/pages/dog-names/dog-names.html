@@ -1,0 +1,184 @@
+<app-header></app-header>
+
+<main class="main">
+  <section class="care-hero">
+    <div class="care-hero__container">
+      <div class="care-hero__content">
+        <h1 class="care-hero__title">
+          Find the perfect<br />
+          name for your dog
+        </h1>
+
+        <p class="care-hero__text">
+          Choose your dog’s breed and gender to get name ideas that match
+          personality, appearance, and vibe automatically.
+        </p>
+      </div>
+
+      <div class="care-hero__image">
+        <img src="assets/images/donation-dog.png" alt="Dog name suggestion illustration" />
+      </div>
+    </div>
+  </section>
+
+  <section class="dog-names-generator">
+    <div class="dog-names-generator__container">
+      <h2 class="dog-names-generator__title title">
+        Dog name suggestion<br />
+        generator
+      </h2>
+
+      <p class="dog-names-generator__text">
+        Pick a breed and gender, then let the page automatically match a name
+        style based on the breed’s personality.
+      </p>
+
+      <div class="dog-names-generator__card">
+        <div class="dog-names-generator__panel">
+          <div class="dog-names-generator__form">
+            <div class="form-group">
+              <label for="breed" class="form-group__label">Breed</label>
+              <select
+                id="breed"
+                class="form-group__control"
+                [(ngModel)]="selectedBreed"
+                (change)="onBreedChange()"
+              >
+                <option *ngFor="let breed of breeds" [value]="breed">
+                  {{ breed }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="gender" class="form-group__label">Gender</label>
+              <select
+                id="gender"
+                class="form-group__control"
+                [(ngModel)]="selectedGender"
+              >
+                <option *ngFor="let gender of genders" [value]="gender">
+                  {{ gender }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-group__label">Style</label>
+              <div class="form-group__auto">
+                <span class="form-group__auto-text">{{ autoStyle }}</span>
+              </div>
+            </div>
+
+            <div class="dog-names-generator__actions">
+           <button class="button" type="button" (click)="generateNames()">
+  {{ hasGenerated ? 'Suggest again' : 'Suggest names' }}
+</button>
+
+            </div>
+          </div>
+
+          <div class="breed-preview">
+            <h3 class="breed-preview__title">Breed preview</h3>
+
+            <div *ngIf="isLoadingBreed" class="breed-preview__state">
+              Loading breed details...
+            </div>
+
+            <div *ngIf="!isLoadingBreed && breedData" class="breed-preview__card">
+              <img
+                class="breed-preview__image"
+                [src]="breedData.image_link"
+                [alt]="breedData.name"
+              />
+
+              <div class="breed-preview__body">
+                <h4 class="breed-preview__name">{{ breedData.name }}</h4>
+
+                <p class="breed-preview__description">
+                  {{ getTemperamentLabel() }}
+                </p>
+
+                <div class="breed-preview__stats">
+                  <div class="breed-preview__stat">
+                    <span class="breed-preview__label">Energy</span>
+                    <span class="breed-preview__value">{{ breedData.energy }}/5</span>
+                  </div>
+
+                  <div class="breed-preview__stat">
+                    <span class="breed-preview__label">Playfulness</span>
+                    <span class="breed-preview__value">{{ breedData.playfulness }}/5</span>
+                  </div>
+
+                  <div class="breed-preview__stat">
+                    <span class="breed-preview__label">Trainability</span>
+                    <span class="breed-preview__value">{{ breedData.trainability }}/5</span>
+                  </div>
+
+                  <div class="breed-preview__stat">
+                    <span class="breed-preview__label">Life span</span>
+                    <span class="breed-preview__value">
+                      {{ breedData.min_life_expectancy }} - {{ breedData.max_life_expectancy }} yrs
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="!isLoadingBreed && !breedData" class="breed-preview__state">
+              Breed details are not available right now.
+            </div>
+          </div>
+        </div>
+
+        <div class="dog-names-results" *ngIf="hasGenerated">
+          <h3 class="dog-names-results__title">Suggested names</h3>
+
+          <div class="dog-names-results__grid">
+            <article class="name-card" *ngFor="let item of suggestedNames">
+              <h4 class="name-card__title">{{ item.name }}</h4>
+              <p class="name-card__tag">{{ item.tag }}</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dog-names-tips">
+    <div class="dog-names-tips__container">
+      <h2 class="dog-names-tips__title title">
+        Tips for choosing<br />
+        the right dog name
+      </h2>
+
+      <div class="dog-names-tips__grid">
+        <article class="tip-card">
+          <h3 class="tip-card__title">Keep it simple</h3>
+          <p class="tip-card__text">
+            Short names with one or two syllables are easier for dogs to hear
+            and remember.
+          </p>
+        </article>
+
+        <article class="tip-card">
+          <h3 class="tip-card__title">Match the personality</h3>
+          <p class="tip-card__text">
+            A playful dog may suit a cheerful name, while a calm or strong breed
+            may fit a more bold or classic name.
+          </p>
+        </article>
+
+        <article class="tip-card">
+          <h3 class="tip-card__title">Avoid command-like names</h3>
+          <p class="tip-card__text">
+            Try not to choose names that sound too similar to commands like sit,
+            stay, or no.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>

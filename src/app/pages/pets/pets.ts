@@ -4,9 +4,9 @@ import { RouterLink } from '@angular/router';
 import { forkJoin, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { HeaderPets } from '../../shared/header-pets/header-pets';
+import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
-import { DogNinjaService, DogNinjaBreed } from '../../services/dog-ninja.service';
+import { DogNinjaService } from '../../services/dog-ninja.service';
 
 interface PetCard {
   name: string;
@@ -17,31 +17,30 @@ interface PetCard {
 @Component({
   selector: 'app-pets',
   standalone: true,
-  imports: [CommonModule, RouterLink, HeaderPets, Footer],
+  imports: [CommonModule, RouterLink, Header, Footer],
   templateUrl: './pets.html',
   styleUrl: './pets.css'
 })
 export class Pets implements OnInit {
-
   private dogService = inject(DogNinjaService);
 
   petCards: PetCard[] = [
     { name: 'Golden Retriever', route: '/pets/golden-retriever', image: 'assets/images/pets-holder.png' },
-    { name: 'Siberian Husky', route: '/siberian-husky', image: 'assets/images/pets-holder.png' },
-    { name: 'Beagle', route: '/beagle', image: 'assets/images/pets-holder.png' },
-    { name: 'German Shepherd', route: '/german-shepherd', image: 'assets/images/pets-holder.png' },
-    { name: 'Pomeranian', route: '/pomeranian', image: 'assets/images/pets-holder.png' },
-    { name: 'Shih Tzu', route: '/shih-tzu', image: 'assets/images/pets-holder.png' },
-    { name: 'Labrador Retriever', route: '/labrador-retriever', image: 'assets/images/pets-holder.png' },
-    { name: 'French Bulldog', route: '/french-bulldog', image: 'assets/images/pets-holder.png' },
-    { name: 'Dachshund', route: '/dachshund', image: 'assets/images/pets-holder.png' },
-    { name: 'Rottweiler', route: '/rottweiler', image: 'assets/images/pets-holder.png' },
-    { name: 'Border Collie', route: '/border-collie', image: 'assets/images/pets-holder.png' },
-    { name: 'Chihuahua', route: '/chihuahua', image: 'assets/images/pets-holder.png' },
-    { name: 'Corgi', route: '/corgi', image: 'assets/images/pets-holder.png' },
-    { name: 'Poodle', route: '/poodle', image: 'assets/images/pets-holder.png' },
-    { name: 'Doberman', route: '/doberman', image: 'assets/images/pets-holder.png' },
-    { name: 'Maltese', route: '/maltese', image: 'assets/images/pets-holder.png' }
+    { name: 'Siberian Husky', route: '/pets/siberian-husky', image: 'assets/images/pets-holder.png' },
+    { name: 'Beagle', route: '/pets/beagle', image: 'assets/images/pets-holder.png' },
+    { name: 'German Shepherd', route: '/pets/german-shepherd', image: 'assets/images/pets-holder.png' },
+    { name: 'Pomeranian', route: '/pets/pomeranian', image: 'assets/images/pets-holder.png' },
+    { name: 'Shih Tzu', route: '/pets/shih-tzu', image: 'assets/images/pets-holder.png' },
+    { name: 'Labrador Retriever', route: '/pets/labrador-retriever', image: 'assets/images/pets-holder.png' },
+    { name: 'French Bulldog', route: '/pets/french-bulldog', image: 'assets/images/pets-holder.png' },
+    { name: 'Dachshund', route: '/pets/dachshund', image: 'assets/images/pets-holder.png' },
+    { name: 'Rottweiler', route: '/pets/rottweiler', image: 'assets/images/pets-holder.png' },
+    { name: 'Border Collie', route: '/pets/border-collie', image: 'assets/images/pets-holder.png' },
+    { name: 'Chihuahua', route: '/pets/chihuahua', image: 'assets/images/pets-holder.png' },
+    { name: 'Corgi', route: '/pets/corgi', image: 'assets/images/pets-holder.png' },
+    { name: 'Poodle', route: '/pets/poodle', image: 'assets/images/pets-holder.png' },
+    { name: 'Doberman', route: '/pets/doberman', image: 'assets/images/pets-holder.png' },
+    { name: 'Maltese', route: '/pets/maltese', image: 'assets/images/pets-holder.png' }
   ];
 
   ngOnInit(): void {
@@ -49,7 +48,6 @@ export class Pets implements OnInit {
   }
 
   loadImages(): void {
-
     const requests = this.petCards.map(card =>
       this.dogService.getDogByName(card.name).pipe(
         catchError(() => of([]))
@@ -57,7 +55,6 @@ export class Pets implements OnInit {
     );
 
     forkJoin(requests).subscribe(results => {
-
       this.petCards = this.petCards.map((card, i) => {
         const result = results[i];
         const image = result && result.length > 0
@@ -69,8 +66,6 @@ export class Pets implements OnInit {
           image
         };
       });
-
     });
-
   }
 }

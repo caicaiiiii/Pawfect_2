@@ -15,16 +15,51 @@
       </div>
 
       <nav
-        class="header__nav"
-        [class.active]="menuOpen"
-        (click)="$event.stopPropagation()"
-      >
-        <a routerLink="/" class="header__link link-active" (click)="closeMenu()">Home</a>
-        <a routerLink="/pets" class="header__link" (click)="closeMenu()">Dog Breeds</a>
-        <a routerLink="/care-tips" class="header__link" (click)="closeMenu()">Care Tips</a>
-        <a routerLink="/dog-names" class="header__link" (click)="closeMenu()">Dog Names</a>
-        <a routerLink="/about" class="header__link" (click)="closeMenu()">About Us</a>
-      </nav>
+  class="header__nav"
+  [class.active]="menuOpen"
+  (click)="$event.stopPropagation()"
+>
+  <a
+    routerLink="/"
+    routerLinkActive="link-active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="header__link"
+    (click)="closeMenu()"
+  >
+    Home
+  </a>
+
+  <a
+    routerLink="/pets"
+    routerLinkActive="link-active"
+    class="header__link"
+    (click)="closeMenu()"
+  >
+    Dog Breeds
+  </a>
+
+  <a
+    routerLink="/care"
+    routerLinkActive="link-active"
+    class="header__link"
+    (click)="closeMenu()"
+  >
+    Care Tips
+  </a>
+
+  <a routerLink="/dog-names" routerLinkActive="link-active" class="header__link" (click)="closeMenu()">
+  Dog Names
+</a>
+
+  <a
+    routerLink="/about"
+    routerLinkActive="link-active"
+    class="header__link"
+    (click)="closeMenu()"
+  >
+    About Us
+  </a>
+</nav>
     </div>
   </div>
 </header>
