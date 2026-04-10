@@ -1,0 +1,229 @@
+.login-hero {
+  min-height: 100vh;
+  padding-top: 180px;
+  padding-bottom: 90px;
+  background:
+    url("../../../assets/images/noise_transparent@2x.png"),
+    radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%),
+    #211f20;
+}
+
+.login-hero__container {
+  max-width: 1230px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.login-hero__content {
+  flex: 0 1 520px;
+}
+
+.login-hero__eyebrow {
+  margin-bottom: 16px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f1cdb3;
+}
+
+.login-hero__title {
+  margin-bottom: 28px;
+  font-size: 44px;
+  line-height: 130%;
+  color: #ffffff;
+}
+
+.login-hero__text {
+  max-width: 460px;
+  font-family: Arial, sans-serif;
+  line-height: 160%;
+  color: #cdcdcd;
+}
+
+.login-card {
+  flex: 0 1 450px;
+  background: #fafafa;
+  border-radius: 9px;
+  padding: 40px 34px;
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.08);
+}
+
+.login-card__title {
+  margin-bottom: 10px;
+  font-size: 32px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  text-align: center;
+}
+
+.login-card__subtitle {
+  margin-bottom: 30px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 160%;
+  color: #4c4c4c;
+  text-align: center;
+}
+
+.login-form__group:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
+.login-form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #545454;
+}
+
+.login-form__input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border: 1px solid #d6d6d6;
+  border-radius: 9px;
+  background: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  color: #292929;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-form__input:focus {
+  border-color: #f1cdb3;
+  box-shadow: 0 0 0 4px rgba(241, 205, 179, 0.2);
+}
+
+.login-form__input::placeholder {
+  color: #9b9b9b;
+}
+
+.login-form__error {
+  margin-top: 4px;
+  margin-bottom: 18px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #d9534f;
+}
+
+.login-form__button {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 18px;
+  border: none;
+  border-radius: 100px;
+  background-color: #f1cdb3;
+  color: #292929;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.login-form__button:hover {
+  background-color: #fddcc4;
+  transform: translateY(-2px);
+}
+
+.login-card__footer {
+  margin-top: 24px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 160%;
+  color: #4c4c4c;
+}
+
+.login-card__footer a {
+  margin-left: 6px;
+  color: #292929;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid #f1cdb3;
+  transition: color 0.2s ease;
+}
+
+.login-card__footer a:hover {
+  color: #000000;
+}
+
+@media (max-width: 992px) {
+  .login-hero {
+    padding-top: 150px;
+    padding-bottom: 70px;
+  }
+
+  .login-hero__container {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .login-hero__content {
+    flex: unset;
+    max-width: 720px;
+  }
+
+  .login-hero__text {
+    max-width: 100%;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 767px) {
+  .login-hero {
+    padding-top: 150px;
+    padding-bottom: 42px;
+  }
+
+  .login-hero__title {
+    font-size: 32px;
+    letter-spacing: 0.06em;
+  }
+
+  .login-card {
+    padding: 30px 22px;
+  }
+
+  .login-card__title {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-hero__container {
+    padding: 0 10px;
+  }
+
+  .login-hero__title {
+    font-size: 25px;
+    line-height: 130%;
+  }
+
+  .login-hero__text,
+  .login-card__subtitle,
+  .login-card__footer,
+  .login-form__label,
+  .login-form__input {
+    font-size: 15px;
+  }
+
+  .login-card {
+    padding: 24px 16px;
+  }
+}

@@ -15,51 +15,76 @@
       </div>
 
       <nav
-  class="header__nav"
-  [class.active]="menuOpen"
-  (click)="$event.stopPropagation()"
->
-  <a
-    routerLink="/"
-    routerLinkActive="link-active"
-    [routerLinkActiveOptions]="{ exact: true }"
-    class="header__link"
-    (click)="closeMenu()"
-  >
-    Home
-  </a>
+        class="header__nav"
+        [class.active]="menuOpen"
+        (click)="$event.stopPropagation()"
+      >
+        <a
+          routerLink="/"
+          routerLinkActive="link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="header__link"
+          (click)="closeMenu()"
+        >
+          Home
+        </a>
 
-  <a
-    routerLink="/pets"
-    routerLinkActive="link-active"
-    class="header__link"
-    (click)="closeMenu()"
-  >
-    Dog Breeds
-  </a>
+        <a
+          routerLink="/pets"
+          routerLinkActive="link-active"
+          class="header__link"
+          (click)="closeMenu()"
+        >
+          Dog Breeds
+        </a>
 
-  <a
-    routerLink="/care"
-    routerLinkActive="link-active"
-    class="header__link"
-    (click)="closeMenu()"
-  >
-    Care Tips
-  </a>
+        <a
+          routerLink="/care"
+          routerLinkActive="link-active"
+          class="header__link"
+          (click)="closeMenu()"
+        >
+          Care Tips
+        </a>
 
-  <a routerLink="/dog-names" routerLinkActive="link-active" class="header__link" (click)="closeMenu()">
-  Dog Names
-</a>
+        <a
+          routerLink="/dog-names"
+          routerLinkActive="link-active"
+          class="header__link"
+          (click)="closeMenu()"
+        >
+          Dog Names
+        </a>
 
-  <a
-    routerLink="/about"
-    routerLinkActive="link-active"
-    class="header__link"
-    (click)="closeMenu()"
+        <a
+          routerLink="/about"
+          routerLinkActive="link-active"
+          class="header__link"
+          (click)="closeMenu()"
+        >
+          About Us
+        </a>
+
+        <div class="header__auth">
+  <button
+    *ngIf="!isLoggedIn"
+    type="button"
+    class="header__auth-btn header__auth-btn--login"
+    (click)="goToLogin()"
   >
-    About Us
-  </a>
-</nav>
+    Login
+  </button>
+
+  <button
+    *ngIf="isLoggedIn"
+    type="button"
+    class="header__auth-btn header__auth-btn--logout"
+    (click)="signOut()"
+  >
+    Sign Out
+  </button>
+</div>
+      </nav>
     </div>
   </div>
 </header>

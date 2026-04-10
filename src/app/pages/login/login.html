@@ -1,0 +1,71 @@
+<app-header></app-header>
+
+<main class="login-page">
+  <section class="login-hero">
+    <div class="login-hero__container">
+      <div class="login-hero__content">
+        <p class="login-hero__eyebrow">Welcome back</p>
+
+        <h1 class="login-hero__title">
+          Login to your<br />
+          Pawfect Companion account
+        </h1>
+
+        <p class="login-hero__text">
+          Continue exploring dog breeds, care tips, and helpful guides for every
+          dog owner in one simple place.
+        </p>
+      </div>
+
+      <div class="login-card">
+        <h2 class="login-card__title">Sign in</h2>
+        <p class="login-card__subtitle">
+          Enter your email and password to continue
+        </p>
+
+        <form class="login-form" (ngSubmit)="onLogin()">
+          <div class="login-form__group">
+            <label for="email" class="login-form__label">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              class="login-form__input"
+              [(ngModel)]="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="login-form__group">
+            <label for="password" class="login-form__label">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              class="login-form__input"
+              [(ngModel)]="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+
+          <p class="login-form__error" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </p>
+
+          <button type="submit" class="login-form__button">
+            Login
+          </button>
+        </form>
+
+        <div class="login-card__footer">
+          <span>Don’t have an account?</span>
+          <a routerLink="/register">Register here</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,121 @@
+.register-hero {
+  min-height: 100vh;
+  padding-top: 180px;
+  padding-bottom: 90px;
+  background:
+    url("../../../assets/images/noise_transparent@2x.png"),
+    radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%),
+    #211f20;
+}
+
+.register-hero__container {
+  max-width: 1230px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.register-hero__content {
+  flex: 0 1 520px;
+}
+
+.register-hero__eyebrow {
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f1cdb3;
+}
+
+.register-hero__title {
+  margin-bottom: 28px;
+  font-size: 44px;
+  line-height: 130%;
+  color: #ffffff;
+}
+
+.register-hero__text {
+  max-width: 460px;
+  line-height: 160%;
+  color: #cdcdcd;
+}
+
+/* CARD */
+.register-card {
+  flex: 0 1 450px;
+  background: #fafafa;
+  border-radius: 9px;
+  padding: 40px 34px;
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.08);
+}
+
+.register-card__title {
+  margin-bottom: 10px;
+  font-size: 32px;
+  text-align: center;
+}
+
+.register-card__subtitle {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* FORM */
+.register-form__group {
+  margin-bottom: 20px;
+}
+
+.register-form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.register-form__input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border: 1px solid #d6d6d6;
+  border-radius: 9px;
+}
+
+.register-form__input:focus {
+  border-color: #f1cdb3;
+  box-shadow: 0 0 0 4px rgba(241, 205, 179, 0.2);
+}
+
+.register-form__error {
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #d9534f;
+}
+
+.register-form__button {
+  width: 100%;
+  min-height: 52px;
+  border: none;
+  border-radius: 100px;
+  background-color: #f1cdb3;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.register-form__button:hover {
+  background-color: #fddcc4;
+}
+
+/* FOOTER */
+.register-card__footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.register-card__footer a {
+  margin-left: 6px;
+  font-weight: 700;
+  border-bottom: 2px solid #f1cdb3;
+}

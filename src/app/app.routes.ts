@@ -23,6 +23,9 @@ import { Corgi } from './pages/breeds/corgi/corgi';
 import { DogCare } from './pages/dog-care/dog-care';
 import { DogNames } from './pages/dog-names/dog-names';
 
+import { Login } from './pages/login/login';
+import { Register } from './pages/register/register';
+
 export const routes: Routes = [
   { path: '', component: Main },
   { path: 'pets', component: Pets },
@@ -44,7 +47,8 @@ export const routes: Routes = [
   { path: 'pets/chihuahua', component: Chihuahua },
   { path: 'pets/doberman', component: Doberman },
   { path: 'pets/corgi', component: Corgi },
-
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
 
 
   { path: '**', redirectTo: '' }
