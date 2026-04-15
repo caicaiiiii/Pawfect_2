@@ -1,83 +1,82 @@
 <app-header></app-header>
 
-<main class="register-page">
-  <section class="register-hero">
-    <div class="register-hero__container">
+<main class="reg-page">
+  <div class="reg-wrapper">
 
-      <div class="register-hero__content">
-        <p class="register-hero__eyebrow">Join us</p>
+    <div class="reg-box">
 
-        <h1 class="register-hero__title">
+      <!-- Left Panel (dark) -->
+      <div class="reg-panel">
+        <p class="reg-panel__eyebrow">Join us</p>
+        <h1 class="reg-panel__title">
           Create your<br />
           Pawfect Companion account
         </h1>
-
-        <p class="register-hero__text">
+        <p class="reg-panel__text">
           Start exploring dog breeds, care tips, and helpful guides made for every dog owner.
         </p>
       </div>
 
-      <div class="register-card">
-        <h2 class="register-card__title">Register</h2>
-        <p class="register-card__subtitle">
-          Fill in your details to get started
-        </p>
+      <!-- Right Panel (white form) -->
+      <div class="reg-form-panel">
+        <h2 class="reg-form-panel__title">Register</h2>
+        <p class="reg-form-panel__subtitle">Fill in your details to get started</p>
 
-        <form class="register-form" (ngSubmit)="onRegister()">
+        <form class="reg-form" (ngSubmit)="onRegister()">
 
-          <div class="register-form__group">
-            <label class="register-form__label">Full Name</label>
+          <div class="reg-form__group">
+            <label for="name" class="reg-form__label">Full Name</label>
             <input
-              type="text"
-              [(ngModel)]="name"
+              id="name"
               name="name"
-              class="register-form__input"
+              type="text"
+              class="reg-form__input"
+              [(ngModel)]="name"
               placeholder="Enter your full name"
               required
             />
           </div>
 
-          <div class="register-form__group">
-            <label class="register-form__label">Email</label>
+          <div class="reg-form__group">
+            <label for="email" class="reg-form__label">Email</label>
             <input
-              type="email"
-              [(ngModel)]="email"
+              id="email"
               name="email"
-              class="register-form__input"
+              type="email"
+              class="reg-form__input"
+              [(ngModel)]="email"
               placeholder="Enter your email"
               required
             />
           </div>
 
-          <div class="register-form__group">
-            <label class="register-form__label">Password</label>
+          <div class="reg-form__group">
+            <label for="password" class="reg-form__label">Password</label>
             <input
-              type="password"
-              [(ngModel)]="password"
+              id="password"
               name="password"
-              class="register-form__input"
+              type="password"
+              class="reg-form__input"
+              [(ngModel)]="password"
               placeholder="Enter your password"
               required
             />
           </div>
 
-          <p class="register-form__error" *ngIf="errorMessage">
-            {{ errorMessage }}
-          </p>
+          <p class="reg-form__error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
-          <button type="submit" class="register-form__button">
-            Register
-          </button>
+          <button type="submit" class="reg-form__button">Register</button>
+
         </form>
 
-        <div class="register-card__footer">
+        <div class="reg-form-panel__footer">
           <span>Already have an account?</span>
           <a routerLink="/login">Login here</a>
         </div>
       </div>
 
     </div>
-  </section>
+  </div>
 </main>
 
 <app-footer></app-footer>
